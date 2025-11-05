@@ -41,7 +41,7 @@ struct cgol {
     long t;
     size_t xsize;
     size_t ysize;
-    cell (*grid)[][];
+    cell **grid;
 };
 
 // Define a enum for error numbers.

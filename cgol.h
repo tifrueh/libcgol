@@ -29,6 +29,13 @@
  * See https://en.wikipedia.org/wiki/Conway's_Game_of_Life.
  */
 
+/* Macros
+ * ======
+ */
+
+// Define a buffer size for the error string.
+#define CGOL_ERRSTR_LEN 256
+
 /* Types and Structures
  * ====================
  */
@@ -41,7 +48,7 @@ struct cgol {
     long t;
     size_t xsize;
     size_t ysize;
-    cell **grid;
+    cell *grid;
 };
 
 // Define a enum for error numbers.
@@ -49,6 +56,7 @@ enum cgol_err {
     SUCCESS = 0,
     OUT_OF_MEMORY,
     OUT_OF_BOUNDS,
+    NULL_PTR,
 };
 
 /* Globals
@@ -65,7 +73,7 @@ extern char *cgol_errstr;
  * =================
  */
 
-// Get an error string.
+// Get the current error string.
 char *cgol_geterror(void);
 
 // Initialise a new cgol structure.
@@ -80,15 +88,14 @@ void cgol_free(struct cgol *instance);
 // Perform one tick in a cgol instance.
 enum cgol_err cgol_tick(struct cgol *instance);
 
-// Shift the view of an instance downwards by a certain amount.
+// Shift the view of an instance.
 enum cgol_err cgol_yshift(struct cgol *instance, size_t shamt);
-
-// Shift the view of an instance to the right by a certain amount.
 enum cgol_err cgol_xshift(struct cgol *instance, size_t shamt);
 
-// Set a cell of an instance.
+// Get/set a cell of an instance.
+int cgol_isalive(struct cgol instance, size_t y, size_t x);
 enum cgol_err cgol_awaken(struct cgol *instance, size_t y, size_t x);
 enum cgol_err cgol_kill(struct cgol *instance, size_t y, size_t x);
 
-// Place one instance into another.
-enum cgol_err cgol_place(struct cgol *src, struct cgol *dst, size_t y, size_t x);
+// Place part of one instance into another.
+enum cgol_err cgol_place(struct cgol *src, size_t srcy, size_t srcx, struct cgol *dst, size_t dsty, size_t dstx);

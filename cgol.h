@@ -47,9 +47,9 @@ typedef char cell;
 
 // Define the main data structure.
 struct cgol {
-    long t;
-    size_t xsize;
+    unsigned long t;
     size_t ysize;
+    size_t xsize;
     cell *grid;
 };
 

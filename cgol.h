@@ -23,6 +23,8 @@
  */
 
 #include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 /* Reference
  * =========
@@ -54,9 +56,9 @@ struct cgol {
 // Define a enum for error numbers.
 enum cgol_err {
     SUCCESS = 0,
-    OUT_OF_MEMORY,
-    OUT_OF_BOUNDS,
-    NULL_PTR,
+    OUT_OF_MEMORY = 1,
+    OUT_OF_BOUNDS = 2,
+    NULL_PTR = 3,
 };
 
 /* Globals
@@ -67,14 +69,14 @@ enum cgol_err {
 extern enum cgol_err cgol_errno;
 
 // Declare a global error string.
-extern char *cgol_errstr;
+extern char cgol_errstr[CGOL_ERRSTR_LEN];
 
 /* Library Functions
  * =================
  */
 
-// Get the current error string.
-char *cgol_geterror(void);
+// Print the current error and exit accordingly.
+void cgol_enderr(void);
 
 // Initialise a new cgol structure.
 struct cgol *cgol_new(size_t ysize, size_t xsize);

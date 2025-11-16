@@ -25,6 +25,7 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 /* Reference
  * =========
@@ -43,7 +44,7 @@
  */
 
 // Define a type for cells.
-typedef char cell;
+typedef uint8_t cell;
 
 // Define the main data structure.
 struct cgol {

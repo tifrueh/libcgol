@@ -96,7 +96,7 @@ enum cgol_err cgol_yshift(struct cgol *instance, size_t shamt);
 enum cgol_err cgol_xshift(struct cgol *instance, size_t shamt);
 
 // Get/set a cell of an instance.
-int cgol_isalive(struct cgol instance, size_t y, size_t x);
+int cgol_isalive(struct cgol *instance, size_t y, size_t x);
 enum cgol_err cgol_awaken(struct cgol *instance, size_t y, size_t x);
 enum cgol_err cgol_kill(struct cgol *instance, size_t y, size_t x);
 

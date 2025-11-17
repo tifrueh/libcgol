@@ -9,8 +9,8 @@ static enum cgol_err tick_cell(struct cgol* instance, size_t y, size_t x) {
 
     // Count the number of adjacent and alive blocks.
     unsigned char adj_alive = 0;
-    for (int i = y-1; i >= 0 && i < y+1 && i < instance->ysize; i++) {
-        for (int j = x-1; j >= 0 && j < y+1 && j < instance->xsize; j++) {
+    for (size_t i = y-1; i < y+1 && i < instance->ysize; i++) {
+        for (size_t j = x-1; j < y+1 && j < instance->xsize; j++) {
             if (i == y && j == x) continue;
             adj_alive += RGRID_AT(instance, i, j);
         }
@@ -33,8 +33,8 @@ static enum cgol_err tick_cell(struct cgol* instance, size_t y, size_t x) {
 enum cgol_err cgol_tick(struct cgol *instance) {
 
     // Tick all cells.
-    for (int i = 0; i < instance->ysize; i++) {
-        for (int j = 0; j < instance->xsize; j++) {
+    for (size_t i = 0; i < instance->ysize; i++) {
+        for (size_t j = 0; j < instance->xsize; j++) {
             cgol_errno = tick_cell(instance, i, j);
             if (cgol_errno != SUCCESS) return cgol_errno;
         }

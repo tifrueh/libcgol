@@ -41,7 +41,7 @@ enum cgol_err cgol_tick(struct cgol *instance) {
     }
 
     // Update all cells.
-    for (int i = 0; i < instance->ysize*instance->xsize; i++) {
+    for (size_t i = 0; i < instance->ysize*instance->xsize; i++) {
         instance->grid[i] >>= 1;
     }
 

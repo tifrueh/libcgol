@@ -39,6 +39,10 @@
 // Define a buffer size for the error string.
 #define CGOL_ERRSTR_LEN 256
 
+// Define a macros for grid access.
+#define GRID_AT(instance, y, x) instance->grid[y*instance->xsize+x]
+#define MGRID_AT(instance, xsize, y, x) instance->grid[y*xsize+x]
+
 /* Types and Structures
  * ====================
  */

@@ -10,7 +10,7 @@ int cgol_isalive(struct cgol *instance, size_t y, size_t x) {
         cgol_errno = OUT_OF_BOUNDS;
         return OUT_OF_BOUNDS;
     }
-    return instance->grid[y*instance->xsize+x];
+    return GRID_AT(instance, y, x);
 }
 
 enum cgol_err cgol_awaken(struct cgol *instance, size_t y, size_t x) {
@@ -18,7 +18,7 @@ enum cgol_err cgol_awaken(struct cgol *instance, size_t y, size_t x) {
         cgol_errno = OUT_OF_BOUNDS;
         return OUT_OF_BOUNDS;
     }
-    instance->grid[y*instance->xsize+x] = 1;
+    GRID_AT(instance, y, x) = 1;
     return SUCCESS;
 }
 
@@ -27,6 +27,6 @@ enum cgol_err cgol_kill(struct cgol *instance, size_t y, size_t x) {
         cgol_errno = OUT_OF_BOUNDS;
         return OUT_OF_BOUNDS;
     }
-    instance->grid[y*instance->xsize+x] = 0;
+    GRID_AT(instance, y, x) = 0;
     return SUCCESS;
 }

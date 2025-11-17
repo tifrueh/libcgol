@@ -36,6 +36,9 @@
  * ======
  */
 
+// Define the version string.
+#define CGOL_VERSION "@version@"
+
 // Define a buffer size for the error string.
 #define CGOL_ERRSTR_LEN 256
 

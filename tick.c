@@ -49,4 +49,4 @@ enum cgol_err cgol_tick(struct cgol *instance) {
     instance->t++;
 
     return SUCCESS;
-};
+}

@@ -16,4 +16,4 @@ void cgol_enderr(void) {
         puts(cgol_errstr);
         exit(cgol_errno);
     }
-};
+}

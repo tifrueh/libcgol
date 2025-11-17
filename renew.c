@@ -10,7 +10,9 @@ static int rearrange(struct cgol *instance, size_t ysize, size_t xsize) {
     // Store new value in second bit.
     for (int i = 0; (i < ysize) && (i < instance->ysize); i++) {
         for (int j = 0; (j < xsize) && (j < instance->xsize); j++) {
-            instance->grid[i*xsize+j] &= instance->grid[i*instance->xsize+j] << 1;
+            instance->grid[i*xsize+j] =
+                (instance->grid[i*xsize+j] & 0x1)
+                & ((instance->grid[i*instance->xsize+j] & 0x1) << 1);
         }
     }
     // Update cells.

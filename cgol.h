@@ -39,9 +39,23 @@
 // Define a buffer size for the error string.
 #define CGOL_ERRSTR_LEN 256
 
-// Define a macros for grid access.
+// Access the grid of an instance at coordinates y and x.
 #define GRID_AT(instance, y, x) instance->grid[y*instance->xsize+x]
+
+// Access the real grid at coordinates y and x.
+#define RGRID_AT(instance, y, x) ((GRID_AT(instance, y, x)) & 0x1)
+
+// Access the superposed grid at coordinates y and x.
+#define SGRID_AT(instance, y, x) ((GRID_AT(instance, y, x)) & 0x2)
+
+// Access the grid of an instance with a modified xsize.
 #define MGRID_AT(instance, xsize, y, x) instance->grid[y*xsize+x]
+
+// Access the real modified grid at coordinates y and x.
+#define MRGRID_AT(instance, xsize, y, x) ((MGRID_AT(instance, xsize, y, x)) & 0x1)
+
+// Access the modified superposed grid at coordinates y and x.
+#define MSGRID_AT(instance, xsize, y, x) ((MGRID_AT(instance, xsize, y, x)) & 0x2)
 
 /* Types and Structures
  * ====================

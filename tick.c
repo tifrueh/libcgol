@@ -12,12 +12,12 @@ static enum cgol_err tick_cell(struct cgol* instance, size_t y, size_t x) {
     for (int i = y-1; i >= 0 && i < y+1 && i < instance->ysize; i++) {
         for (int j = x-1; j >= 0 && j < y+1 && j < instance->xsize; j++) {
             if (i == y && j == x) continue;
-            adj_alive += GRID_AT(instance, i, j) & 0x1;
+            adj_alive += RGRID_AT(instance, i, j);
         }
     }
 
     // Update second bit of cell accordingly.
-    char isalive = GRID_AT(instance, y, x) & 0x1;
+    char isalive = RGRID_AT(instance, y, x);
     switch (isalive) {
     case 0:
         if (adj_alive == 3)     GRID_AT(instance, y, x) = 0x2;

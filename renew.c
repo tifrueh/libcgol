@@ -12,7 +12,7 @@ static int rearrange(struct cgol *instance, size_t ysize, size_t xsize) {
         for (int j = 0; (j < xsize) && (j < instance->xsize); j++) {
             MGRID_AT(instance, xsize, i, j) =
                 (MGRID_AT(instance, xsize, i, j) & 0x1)
-                & ((GRID_AT(instance, i, j) & 0x1) << 1);
+                | ((GRID_AT(instance, i, j) & 0x1) << 1);
         }
     }
     // Update cells.

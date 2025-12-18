@@ -22,6 +22,9 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef __CGOL_H_
+#define __CGOL_H_
+
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -120,3 +123,5 @@ enum cgol_err cgol_kill(struct cgol *instance, size_t y, size_t x);
 
 // Place part of one instance into another.
 enum cgol_err cgol_place(struct cgol *src, size_t srcy, size_t srcx, struct cgol *dst, size_t dsty, size_t dstx);
+
+#endif

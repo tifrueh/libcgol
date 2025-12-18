@@ -31,7 +31,7 @@ configure_file(
 )
 
 # Configure library target.
-library(
+libcgol = library(
   'cgol',
   'error.c',
   'free.c',
@@ -42,3 +42,6 @@ library(
   version: meson.project_version(),
   install: true
 )
+
+# Configure tests.
+subdir('test')

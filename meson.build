@@ -8,7 +8,7 @@ project(
 )
 
 # Try to get version string from git or use project version if that fails.
-git_describe = run_command('git', 'describe', '--always', '--dirty=-d', check: false)
+git_describe = run_command('git', 'describe', '--always', check: false)
 git_describe_out = git_describe.stdout().strip()
 
 version = meson.project_version()

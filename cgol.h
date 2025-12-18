@@ -90,9 +90,6 @@ enum cgol_err {
 // Declare a global error variable.
 extern enum cgol_err cgol_errno;
 
-// Declare a global error string.
-extern char cgol_errstr[CGOL_ERRSTR_LEN];
-
 /* Library Functions
  * =================
  */

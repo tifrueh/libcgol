@@ -41,5 +41,8 @@ int main(void) {
     test->grid[TEST_YSIZE*TEST_XSIZE-1] = 0x1;
     TEST_PASS;
 
+    // Free test structure.
+    cgol_free(test);
+
     TEST_FINISH;
 }

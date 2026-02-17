@@ -27,6 +27,6 @@ enum cgol_err cgol_kill(struct cgol *instance, size_t y, size_t x) {
         cgol_errno = OUT_OF_BOUNDS;
         return OUT_OF_BOUNDS;
     }
-    GRID_AT(instance, y, x) = 0x1;
+    GRID_AT(instance, y, x) = 0x0;
     return SUCCESS;
 }

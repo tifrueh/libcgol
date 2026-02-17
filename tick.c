@@ -9,22 +9,28 @@ static enum cgol_err tick_cell(struct cgol* instance, size_t y, size_t x) {
 
     // Count the number of adjacent and alive blocks.
     unsigned char adj_alive = 0;
-    for (size_t i = y-1; i < y+1 && i < instance->ysize; i++) {
-        for (size_t j = x-1; j < y+1 && j < instance->xsize; j++) {
-            if (i == y && j == x) continue;
+    for (size_t i = y-1; i <= y+1; i++) {
+        for (size_t j = x-1; j <= x+1; j++) {
+            if (
+                  (i == y && j == x)
+                || i > instance->ysize
+                || j > instance->xsize
+            ) continue;
             adj_alive += RGRID_AT(instance, i, j);
         }
     }
 
     // Update second bit of cell accordingly.
-    char isalive = RGRID_AT(instance, y, x);
-    switch (isalive) {
-    case 0:
-        if (adj_alive == 3)     GRID_AT(instance, y, x) = 0x2;
-    case 1:
-        if (adj_alive < 2)      GRID_AT(instance, y, x) = 0x1;
-        else if (adj_alive < 4) GRID_AT(instance, y, x) = 0x3;
-        else                    GRID_AT(instance, y, x) = 0x1;
+    switch (adj_alive) {
+    case 2:
+        GRID_AT(instance, y, x) = RGRID_AT(instance, y, x) | (RGRID_AT(instance, x, y) << 1);
+        break;
+    case 3:
+        GRID_AT(instance, y, x) = RGRID_AT(instance, y, x) | (0x1U << 1);
+        break;
+    default:
+        GRID_AT(instance, y, x) = RGRID_AT(instance, y, x) & ~(0x1U << 1);
+        break;
     }
 
     return SUCCESS;

@@ -72,6 +72,63 @@ int main(void) {
         );
     }
 
+    // Test stable populations by the edge.
+    cgol_free(test);
+    test = cgol_new(TEST_YSIZE, TEST_XSIZE);
+    cgol_awaken(test, 0, 0);
+    cgol_awaken(test, 0, 1);
+    cgol_awaken(test, 1, 0);
+    cgol_awaken(test, 1, 1);
+    cgol_awaken(test, 0, TEST_XSIZE-2);
+    cgol_awaken(test, 0, TEST_XSIZE-1);
+    cgol_awaken(test, 1, TEST_XSIZE-2);
+    cgol_awaken(test, 1, TEST_XSIZE-1);
+    cgol_awaken(test, TEST_YSIZE-2, TEST_XSIZE-2);
+    cgol_awaken(test, TEST_YSIZE-2, TEST_XSIZE-1);
+    cgol_awaken(test, TEST_YSIZE-1, TEST_XSIZE-2);
+    cgol_awaken(test, TEST_YSIZE-1, TEST_XSIZE-1);
+    cgol_awaken(test, TEST_YSIZE-2, 0);
+    cgol_awaken(test, TEST_YSIZE-2, 1);
+    cgol_awaken(test, TEST_YSIZE-1, 0);
+    cgol_awaken(test, TEST_YSIZE-1, 1);
+    cgol_tick(test);
+    if (cgol_isalive(test, 0, 0)) {
+        TEST_PASS;
+    } else {
+        TEST_FAIL;
+        printf(
+            "  %s:%d: weird things going on at the top left edge\n",
+            __FILE__, __LINE__
+        );
+    }
+    if (cgol_isalive(test, 0, 15)) {
+        TEST_PASS;
+    } else {
+        TEST_FAIL;
+        printf(
+            "  %s:%d: weird things going on at the top right edge\n",
+            __FILE__, __LINE__
+        );
+    }
+    if (cgol_isalive(test, 15, 15)) {
+        TEST_PASS;
+    } else {
+        TEST_FAIL;
+        printf(
+            "  %s:%d: weird things going on at the bottom right edge\n",
+            __FILE__, __LINE__
+        );
+    }
+    if (cgol_isalive(test, 15, 0)) {
+        TEST_PASS;
+    } else {
+        TEST_FAIL;
+        printf(
+            "  %s:%d: weird things going on at the bottom left edge\n",
+            __FILE__, __LINE__
+        );
+    }
+
     // Free test structure.
     cgol_free(test);
 

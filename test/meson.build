@@ -14,6 +14,13 @@ e_test_getset = executable(
   link_with: libcgol,
 )
 
+e_test_tick = executable(
+  'test-tick',
+  'tick.c',
+  include_directories: includes,
+  link_with: libcgol,
+)
+
 test(
   'new',
   e_test_new
@@ -22,4 +29,9 @@ test(
 test(
   'getset',
   e_test_getset
+)
+
+test(
+  'tick',
+  e_test_tick
 )
